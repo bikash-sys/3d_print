@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 5005;
 
 // Configure CORS
 app.use(cors({
-  origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+  origin: true, // Dynamically reflect origin to allow Vercel deploys and local development
   credentials: true
 }));
 
@@ -105,6 +105,10 @@ app.post('/api/verify-payment', (req, res) => {
 });
 
 // Start Server
-app.listen(PORT, () => {
-  console.log(`Razorpay backend server running on port ${PORT}`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Razorpay backend server running on port ${PORT}`);
+  });
+}
+
+module.exports = app;

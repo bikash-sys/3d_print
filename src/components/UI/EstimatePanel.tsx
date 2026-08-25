@@ -35,7 +35,7 @@ export function EstimatePanel({ models, settings }: EstimatePanelProps) {
       const amountInPaise = Math.max(100, Math.round(priceInINR * 100));
 
       // 2. Call backend order creation endpoint
-      const response = await fetch('http://localhost:5005/api/create-order', {
+      const response = await fetch('/api/create-order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export function EstimatePanel({ models, settings }: EstimatePanelProps) {
           setIsPaying(true);
           try {
             // Verify payment signature on backend
-            const verifyResponse = await fetch('http://localhost:5005/api/verify-payment', {
+            const verifyResponse = await fetch('/api/verify-payment', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
